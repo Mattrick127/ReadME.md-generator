@@ -52,25 +52,6 @@ const promptQuestions = () => {
             }
         },
         {
-            type: 'confirm',
-            name: 'confirmContents',
-            message: 'Would you like to include a table of contents?',
-            default: true
-        },
-        {
-            type: 'checkbox',
-            name: 'contents',
-            message: 'What sections of this page would you like to include in your Readme? (Check which you want)',
-            choices: ['Description', 'Contents', 'Installation', 'Usage', 'License', 'Contribution', 'Tests', 'Questions'],
-            when: ({ confirmContents }) => {
-                if (confirmContents) {
-                    return true;
-                } else {
-                    return false;
-                }
-            }
-        },
-        {
             type: 'input',
             name: 'installation',
             message: 'How would one sitting at home be able to use your application?',
@@ -86,9 +67,22 @@ const promptQuestions = () => {
             message: 'Would you like to list any fellow collaborators in this project?',
         },
         {
-            type: 'input',
-            name: 'license',
+            type: 'confirm',
+            name: 'confirmLicense',
             message: 'Would you like to include a license?',
+        },
+        {
+            type: 'choice',
+            name: 'license',
+            message: 'What type of license would you like to have for your README?',
+            choices: ['MIT', 'Boost', 'Unlicense'],
+            when: ({ confirmLicense }) => {
+                if (confirmLicense) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
         },
         {
             type: 'input',
@@ -114,6 +108,11 @@ const promptQuestions = () => {
             type: 'input',
             name: 'github',
             message: 'Would you like to include your github username?'
+        },
+        {
+            type: 'input',
+            name: 'email',
+            message: 'Would you like to include your email?'
         }
     ])
 }
