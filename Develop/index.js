@@ -27,7 +27,7 @@ const promptQuestions = () => {
     return inquirer.prompt([
         {
             type: 'input',
-            name: 'name',
+            name: 'title',
             message: 'What is the title of your project!?',
             validate: titleInput => {
                 if (titleInput) {
@@ -37,7 +37,38 @@ const promptQuestions = () => {
                     return false;
                 }
             }
-        },
+        }
+    ])
+}
+
+
+// TODO: Create a function to write README file
+
+
+promptQuestions()
+.then(readMeData => {
+    return generateMarkdown(readMeData);
+})
+.then(pageReadMe => {
+    return writeFile(pageReadMe);
+})
+.then(writeFileResponse => {
+    console.log(writeFileResponse);
+})
+.catch(err => {
+    console.log(err);
+});
+
+
+// TODO: Create a function to initialize app
+// function init() {}
+
+// Function call to initialize app
+
+
+
+
+
     //     {
     //         type: 'input',
     //         name: 'description',
@@ -98,24 +129,3 @@ const promptQuestions = () => {
     //         message: 'Would you like to include tests?',
     //         default: false
     //     },
-    ])
-
-
-
-
-}
-
-
-// TODO: Create a function to write README file
-
-
-promptQuestions()
-.then(readmeData => {
-    return generateMarkdown(readmeData);
-})
-
-
-// TODO: Create a function to initialize app
-// function init() {}
-
-// Function call to initialize app
