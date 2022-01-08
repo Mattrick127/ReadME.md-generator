@@ -68,8 +68,9 @@ ${data.questions}
 
 ${data.github}
 
-${data.email}
+https://github.com/${data.email}
 `;
 }
 
 module.exports = generateMarkdown;
+// https://github.com/Mattrick127

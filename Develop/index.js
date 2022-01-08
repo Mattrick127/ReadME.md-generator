@@ -5,7 +5,7 @@ const fs = require('fs');
 
 const writeFile = fileContent => {
     return new Promise ((resolve, reject) => {
-        fs.writeFile('.ReadME.md', fileContent, err => {
+        fs.writeFile('.README.md', fileContent, err => {
             if (err) {
                 reject(err);
                 return;
@@ -28,12 +28,12 @@ const promptQuestions = () => {
         {
             type: 'input',
             name: 'title',
-            message: 'What is the title of your project!?',
+            message: 'Please enter the title of your project.',
             validate: titleInput => {
                 if (titleInput) {
                     return true;
                 } else{
-                    console.log('Please enter a title name for your Readme!');
+                    console.log('You must enter a title to continue the generator.');
                     return false;
                 }
             }
@@ -41,12 +41,12 @@ const promptQuestions = () => {
         {
             type: 'input',
             name: 'description',
-            message: 'Please explain what your project is about.',
+            message: 'In your words, what is your project about and what does it do.',
             validate: titleInput => {
                 if (titleInput) {
                     return true;
                 } else{
-                    console.log('Please enter a title name for your Readme!');
+                    console.log('You must enter a description for your application.');
                     return false;
                 }
             }
@@ -62,7 +62,7 @@ const promptQuestions = () => {
             message: 'What are the uses for this application?',
         },
         {
-            type: 'input',
+            type: 'confirm',
             name: 'contribution',
             message: 'Would you like to list any fellow collaborators in this project?',
         },
@@ -75,7 +75,7 @@ const promptQuestions = () => {
             type: 'choice',
             name: 'license',
             message: 'What type of license would you like to have for your README?',
-            choices: ['MIT', 'Boost', 'Unlicense'],
+            choices: ['MIT', 'Boost', 'Unlicensed'],
             when: ({ confirmLicense }) => {
                 if (confirmLicense) {
                     return true;
@@ -85,34 +85,40 @@ const promptQuestions = () => {
             }
         },
         {
-            type: 'input',
-            name: 'badges',
-            message: 'Would you like to include a badge at the top of your ReadME?',
-        },
-        {
-            type: 'input',
-            name: 'features',
-            message: 'What other features does your product contain?',
-        },
-        {
-            type: 'input',
+            type: 'confirm',
             name: 'tests',
-            message: 'Would you like to include tests?',
+            message: 'Would you like to add anything else for the user to know when testing your application?',
         },
         {
-            type: 'input',
+            type: 'confirm',
             name: 'questions',
             message: 'Would you like to add any additional questions?',
         },
         {
-            type: 'input',
+            type: 'confirm',
             name: 'github',
-            message: 'Would you like to include your github username?'
+            message: 'Please enter your github username for your README.',
+            validate: githubInput => {
+                if (githubInput) {
+                    return true;
+                } else{
+                    console.log('You must enter a github username for your README.');
+                    return false;
+                }
+            }
         },
         {
-            type: 'input',
+            type: 'confirm',
             name: 'email',
-            message: 'Would you like to include your email?'
+            message: 'Please enter your email for your README.',
+            validate: emailInput => {
+                if (emailInput) {
+                    return true;
+                } else{
+                    console.log('You must enter your email for your README.');
+                    return false;
+                }
+            }
         }
     ])
 }
