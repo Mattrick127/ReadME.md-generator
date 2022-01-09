@@ -54,7 +54,7 @@ const promptQuestions = () => {
         {
             type: 'input',
             name: 'installation',
-            message: 'How would one sitting at home be able to use your application?',
+            message: 'Please explain how to install this application.',
         },
         {
             type: 'input',
@@ -63,8 +63,13 @@ const promptQuestions = () => {
         },
         {
             type: 'confirm',
+            name: 'confirmContribution',
+            message: 'Would you like to add contribution guidelines for your project?',
+        },
+        {
+            type: 'input',
             name: 'contribution',
-            message: 'Would you like to list any fellow collaborators in this project?',
+            message: 'Please explain how to add on to your project and under what guidelines.',
         },
         {
             type: 'confirm',
@@ -72,7 +77,7 @@ const promptQuestions = () => {
             message: 'Would you like to include a license?',
         },
         {
-            type: 'choice',
+            type: 'list',
             name: 'license',
             message: 'What type of license would you like to have for your README?',
             choices: ['MIT', 'Boost', 'Unlicensed'],
@@ -86,16 +91,26 @@ const promptQuestions = () => {
         },
         {
             type: 'confirm',
-            name: 'tests',
+            name: 'confirmTests',
             message: 'Would you like to add anything else for the user to know when testing your application?',
         },
         {
-            type: 'confirm',
-            name: 'questions',
-            message: 'Would you like to add any additional questions?',
+            type: 'input',
+            name: 'tests',
+            message: 'Please enter anything else you would like the user to know when testing.',
         },
         {
             type: 'confirm',
+            name: 'confirmQuestions',
+            message: 'Would you like to add any additional information?',
+        },
+        {
+            type: 'input',
+            name: 'questions',
+            message: 'Please enter anything else you would like the user to know when testing.',
+        },
+        {
+            type: 'input',
             name: 'github',
             message: 'Please enter your github username for your README.',
             validate: githubInput => {
@@ -108,7 +123,7 @@ const promptQuestions = () => {
             }
         },
         {
-            type: 'confirm',
+            type: 'input',
             name: 'email',
             message: 'Please enter your email for your README.',
             validate: emailInput => {
